@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  Done: (21.01) This schema will define elements in namespace http://warehouse.rf.com/ -->
+<schema 
+	targetNamespace="http://warehouse.rf.com/"
+	elementFormDefault="qualified" 
+	version="1.0"
+	xmlns="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://warehouse.rf.com/">
+
+	<element name="getStockItemsWithQuantityLessThan">
+		<complexType>
+			<sequence>
+				<element name="threshold" type="xsd:int"/>
+			</sequence>
+		</complexType>
+	</element>
+    
+	<element name="getStockItemsWithQuantityLessThanResponse">
+		<complexType>
+			<sequence>
+				<element name="stockList" type="tns:stockListType"/>
+			</sequence>
+		</complexType>
+	</element>
+
+	<complexType name="stockListType">
+		<sequence>
+			<element name="product" type="tns:productType" minOccurs="0" maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+
+	<complexType name="productType">
+		<sequence>
+			<element name="productId" type="xsd:int" />
+			<element name="quantity" type="xsd:int" />
+		</sequence>
+	</complexType>
+
+	<element name="getStockItemsWithQuantityBetween">
+		<complexType>
+			<sequence>
+				<element name="min" type="xsd:int"></element>
+				<element name="max" type="xsd:int"></element>
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="getStockItemsWithQuantityBetweenResponse">
+		<complexType>
+			<sequence>
+				<element name="stockList" type="tns:stockListType"/>
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="isInStock">
+		<complexType>
+			<sequence>
+				<element name="productId" type="xsd:int"/>
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="isInStockResponse">
+		<complexType>
+			<sequence>
+				<element name="inStock" type="xsd:boolean"/>
+			</sequence>
+		</complexType>
+	</element>
+	
+</schema>

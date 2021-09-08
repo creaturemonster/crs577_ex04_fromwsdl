@@ -1,0 +1,56 @@
+<html>
+<body>
+
+<h2>Hints for Exercise 4.1</h2>
+
+<h3>StockWebServiceImpl.java</h3>
+
+<font color="grey"><pre>// TODO: Add required annotations and 'implements' relationships</pre></font>
+<font color="blue"><pre>@WebService(endpointInterface="com.rf.warehouse.generated.webapps.Stock")</pre></font>
+<font color="blue"><pre>public class StockWebServiceImpl implements Stock {</pre></font>
+<font color="grey"><pre>	...</pre></font>
+<font color="grey"><pre>	// TODO: Implement the operations defined by the generated Stock service</pre></font>
+<font color="grey"><pre>	//       endpoint interface</pre></font>
+<font color="blue"><pre>	@Override</pre></font>
+<font color="blue"><pre>	public StockListType getStockItemsWithQuantityBetween(int min, int max) {</pre></font>
+<font color="blue"><pre>		List&lt;StockItem&gt; items = dao.getStockItemsWithQuantityBetween(min, max);</pre></font>
+<font color="blue"><pre>		StockListType stockList = adapter.createStockList(items);</pre></font>
+<font color="blue"><pre>		return stockList;</pre></font>
+<font color="blue"><pre>	}</pre></font>
+<font color="blue"><pre>	@Override</pre></font>
+<font color="blue"><pre>	public StockListType getStockItemsWithQuantityLessThan(int thresh) {</pre></font>
+<font color="blue"><pre>		List&lt;StockItem&gt; items = dao.getStockItemsWithQuantityLessThan(thresh);</pre></font>
+<font color="blue"><pre>		StockListType stockList = adapter.createStockList(items);</pre></font>
+<font color="blue"><pre>		return stockList;</pre></font>
+<font color="blue"><pre>	}</pre></font>
+<font color="blue"><pre>	@Override</pre></font>
+<font color="blue"><pre>	public boolean isInStock(int productId) {</pre></font>
+<font color="blue"><pre>		return dao.isInStock(productId);</pre></font>
+<font color="blue"><pre>	}</pre></font>
+
+<h3>web.xml</h3>
+
+<font color="grey"><pre>	&lt;servlet-mapping&gt;</pre></font>
+<font color="grey"><pre>		&lt;servlet-name&gt;jaxws_endpoint&lt;/servlet-name&gt;</pre></font>
+<font color="grey"><pre>		&lt;!-- TODO: Set the URL pattern to be /stock --&gt;</pre></font>
+<font color="blue"><pre>		&lt;url-pattern&gt;/stock&lt;/url-pattern&gt;</pre></font>
+<font color="grey"><pre>	&lt;/servlet-mapping&gt;</pre></font>
+
+<h3>sun-jaxws.xml</h3>
+
+<font color="grey"><pre>	&lt;!-- TODO: Add an endpoint for the Stock Web service. </pre></font>
+<font color="grey"><pre>	           Use /stock as the URL pattern. </pre></font>
+<font color="grey"><pre>	           Use your Web service implementation class as the implementation.</pre></font>
+<font color="grey"><pre>	           Specify the correct values for the wsdl, port, and service attributes</pre></font>
+<font color="grey"><pre>	           so the service uses the customized WSDL and schema documents. --&gt;</pre></font>
+<font color="blue"><pre>	&lt;endpoint </pre></font>
+<font color="blue"><pre>		name='Stock Service'</pre></font>
+<font color="blue"><pre>		url-pattern='/stock'</pre></font>
+<font color="blue"><pre>		implementation='com.rf.warehouse.webapps.StockWebServiceImpl'</pre></font>
+<font color="blue"><pre>		wsdl="WEB-INF/wsdl/stock.wsdl"</pre></font>
+<font color="blue"><pre>		port="{http://warehouse.rf.com/}StockPort"</pre></font>
+<font color="blue"><pre>		service="{http://warehouse.rf.com/}StockService"</pre></font>
+<font color="blue"><pre>		/&gt;</pre></font>
+
+</body>
+</html>

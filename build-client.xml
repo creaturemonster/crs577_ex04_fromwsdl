@@ -1,0 +1,26 @@
+<!-- You'll only need this build file if the Web service WSDL changes -->
+<project name="ex04_solution_client" basedir="." default="build-client">
+    <property name="appname" value="${ant.project.name}" />
+
+    <import file="../build-common.xml" />
+
+    <property name="wsimport.wsdl" value="http://localhost:8080/ex04_solution/stock?wsdl" />
+
+    <property name="wsimport.package" value="com.rf.portal.warehouseclient.generated" />
+    
+    <target name="build-client" 
+            depends="common.wsimport"
+            description="Builds a test client and copies artifacts to src directory">
+        <copy todir="${src}">
+            <fileset dir="${generated}" includes="com/rf/portal/**/*"/>
+        </copy>
+    </target>
+    
+    <target name="debug" 
+            depends="common.debug" 
+            description="Dumps values of Ant properties">
+        <echo>$${wsimport.package} = ${wsimport.package}</echo>
+        <echo>$${wsimport.wsdl} = ${wsimport.wsdl}</echo>
+    </target>
+    
+</project>

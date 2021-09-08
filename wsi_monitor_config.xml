@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration xmlns="http://www.ws-i.org/testing/2003/03/monitorConfig/">
+  <comment>
+    This configuration file is used to test the Airport Weather applications.
+  </comment>
+  <logFile replace="true" location="wsi_monitor_log.xml">
+    <addStyleSheet href="../common/xsl/log.xsl" type="text/xsl"/>
+  </logFile>
+  <logDuration>600</logDuration>
+  <cleanupTimeoutSeconds>3</cleanupTimeoutSeconds>
+  <manInTheMiddle>
+    <redirect>
+      <comment>This is a redirect for local Airport Weather Service on port 8080</comment>
+      <listenPort>7777</listenPort>
+      <schemeAndHostPort>http://localhost:8080</schemeAndHostPort>
+      <maxConnections>1000</maxConnections>
+      <readTimeoutSeconds>15</readTimeoutSeconds>
+    </redirect>
+  </manInTheMiddle>
+ </configuration>

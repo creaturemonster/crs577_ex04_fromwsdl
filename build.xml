@@ -1,0 +1,38 @@
+<project name="ex04" basedir="." default="deploy">
+    <property name="appname" value="${ant.project.name}" />
+
+    <import file="../build-common.xml" />
+
+    <property name="wsimport.wsdl" value="war/WEB-INF/wsdl/stock.wsdl" />
+    
+    <property name="wsimport.package" value="com.rf.warehouse.generated.webapps" />
+
+    <target name="wsimport" 
+            depends="common.wsimport"
+            description="Generates portable artifacts for a WSDL-first service">
+        <echo>Source code for generated artifacts is in the package ${wsimport.package}</echo>
+    </target>
+    
+    <target name="build-web-service"
+            depends="wsimport, common.build"
+            description="Builds a WSDL-first JAX-WS service">
+    </target>
+    
+    <property name="wsdl.url" 
+              value="http://localhost:8080/${appname}/stock?wsdl" />
+    
+    <target name="deploy"
+            depends="common.deploy"
+            description="Deploys the web service">
+        <echo>To test the service, visit ${wsdl.url}</echo>
+    </target>
+    
+    <target name="debug" 
+            depends="common.debug" 
+            description="Dumps values of Ant properties">
+        <echo>$${wsdl.url} = ${wsdl.url}</echo>
+        <echo>$${wsimport.package} = ${wsimport.package}</echo>
+        <echo>$${wsimport.wsdl} = ${wsimport.wsdl}</echo>
+    </target>
+    
+</project>

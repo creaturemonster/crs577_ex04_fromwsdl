@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<endpoints xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/jax-ws/ri/runtime ../../../sun-jaxws.xsd"
+    version="2.0">
+
+    <!-- TODO: Add an endpoint for the Stock Web service. 
+               Use /stock as the URL pattern. 
+               Use your Web service implementation class as the implementation.
+               Specify the correct values for the wsdl, port, and service attributes
+               so the service uses the customized WSDL and schema documents. 
+               HINT: see slides 4-17 and 4-19 -->
+	<endpoint name="Stock Web service" url-pattern="/stock" implementation='com.rf.warehouse.webapps.StockWebServiceImpl'
+        wsdl="WEB-INF/wsdl/stock.wsdl"
+        port="{http://warehouse.rf.com/}StockPort"
+        service="{http://warehouse.rf.com/}StockService" />
+
+
+
+
+        
+</endpoints>

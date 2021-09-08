@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- To run WS-I Analyzer:
+     Unzip http://www.ws-i.org/Testing/Tools/2005/06/WSI_Test_Java_Final_1.1.zip
+     Copy wsi-test-tools folder to this directory
+     Open command prompt and execute the following commands:
+         cd Donow04_wsdl
+         set WSI_HOME=wsi-test-tools
+         set PATH=%PATH%;wsi-test-tools/java/bin
+         Analyzer -config wsi_analyzer_config.xml
+     To view the generated report, R-click wsi_analyzer_log.xml and open with IE
+ -->
+<!DOCTYPE configuration [
+   <!ENTITY service_name "AirportWeatherService">
+   <!ENTITY port_name "AirportWeatherPort">
+   <!ENTITY wsdl_target_namespace "http://ltree.com/577/services">
+   <!ENTITY wsdl_location "./war/WEB-INF/wsdl/weatherService.wsdl">
+   <!ENTITY analyzer_output_file "./wsi_analyzer_log.xml">
+   <!ENTITY monitor_output_file "./wsi_monitor_log.xml">
+]>
+<configuration name="Airport Weather Service WSDL Analyzer Configuration" 
+               xmlns="http://www.ws-i.org/testing/2004/07/analyzerConfig/">
+  <description>Config file for running WS-I Test Tools against Airport Weather Service WSDL</description>
+
+  <verbose>false</verbose>
+  <assertionResults type="all" messageEntry="true" failureMessage="true"/>
+  <reportFile replace="true" location="&analyzer_output_file;">
+      <addStyleSheet href="wsi-test-tools/common/xsl/report.xsl" type="text/xsl"/>
+  </reportFile>
+  <testAssertionsFile>wsi-test-tools/common/profiles/SSBP10_BP11_TAD.xml</testAssertionsFile>
+  <!-- If you ran WS-I Monitor to capture SOAP messages, include its log file --> 
+  <!--<logFile correlationType="endpoint">&monitor_output_file;</logFile>--> 
+  <wsdlReference>
+      <wsdlElement type="port" 
+                   parentElementName="&service_name;" 
+                   namespace="&wsdl_target_namespace;">&port_name;</wsdlElement>
+      <wsdlURI>&wsdl_location;</wsdlURI>
+  </wsdlReference> 
+</configuration>
